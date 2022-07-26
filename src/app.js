@@ -4,7 +4,10 @@ const paperValue = document.getElementById("paper");
 const sicsorsValue = document.getElementById("sicsors");
 // valor opción seleccionada
 let choiceBtn = document.getElementById("choice");
-let computerResult = document.querySelector(".pc-player")
+let computerResult = document.querySelector(".pc-player");
+let gameResult = document.getElementById("gameResult");
+let playerValue
+
 
 // Función elección PC
 function getRandomChoice() {
@@ -24,29 +27,44 @@ function getRandomChoice() {
     }
 }
 
+
+function checkWinner(player, computer) {
+    if(player == computer){
+        return gameResult.innerHTML = "ES UN EMPATE";
+    }
+    else if(player == "rock"){
+        return(computer == "sicsors") ? gameResult.innerHTML ="GANASTE" : gameResult.innerHTML = "PERDISTE!"}
+
+    else if(player == "sicsors"){
+        return(computer == "paper") ? gameResult.innerHTML ="GANASTE" : gameResult.innerHTML = "PERDISTE!"}
+
+    else if(player == "paper"){
+        return(computer == "rock") ? gameResult.innerHTML ="GANASTE" : gameResult.innerHTML = "PERDISTE!"}
+    }
+     
+
 // escuchar la opción marcada por el usuario
 rockValue.addEventListener("click", function (e) {
     e.preventDefault();
-    console.log("presionaste piedra");
     choiceBtn.innerHTML = "PIEDRA";
-    console.log(getRandomChoice());
-    return 'rock'
+    playerValue = "rock"
+    return checkWinner(playerValue,getRandomChoice())
 })
 
 paperValue.addEventListener("click", function (e) {
     e.preventDefault();
-    console.log("presionaste papel");
     choiceBtn.innerHTML = "PAPEL";
-    console.log(getRandomChoice());
-    return 'paper'
+    playerValue = "paper"
+    return checkWinner(playerValue,getRandomChoice())
 })
 
 sicsorsValue.addEventListener("click", function (e) {
     e.preventDefault();
-    console.log("presionaste tijeras");
     choiceBtn.innerHTML = "TIJERAS";
-    console.log(getRandomChoice());
-    return 'sicsors'
+    playerValue = "sicsors"
+    return checkWinner(playerValue,getRandomChoice())
 })
+
+
 
 
