@@ -8,11 +8,15 @@ let computerResult = document.querySelector(".pc-player");
 let gameResult = document.getElementById("gameResult");
 let playerValue
 
+function getRandomNumber () {
+    return Math.floor(Math.random() * 3) + 1;
+    
+}
 
 // Función elección PC
 function getRandomChoice() {
     //asignar como valor en una variable un número random entre 1 y 3
-    let randomNumber = Math.floor(Math.random() * 3) + 1;
+    let randomNumber = getRandomNumber();
 
     /*usamos switch/case para asignar a cada caso de randomNumber piedra, papel o tijeras
     por ej: si randomNumber da 2 cuando se ejecuta la función, retornara el valor "paper"*/
@@ -44,25 +48,23 @@ function checkWinner(player, computer) {
      
 
 // escuchar la opción marcada por el usuario
-rockValue.addEventListener("click", function (e) {
-    e.preventDefault();
-    choiceBtn.innerHTML = "PIEDRA";
-    playerValue = "rock"
+function checkUserOption(event, choiceText, choice) {
+    event.preventDefault();
+    choiceBtn.innerHTML = choiceText;
+    playerValue = choice;
     return checkWinner(playerValue,getRandomChoice())
+}
+
+rockValue.addEventListener("click", function (event) {
+    return checkUserOption(event, "PIEDRA", "rock")
 })
 
-paperValue.addEventListener("click", function (e) {
-    e.preventDefault();
-    choiceBtn.innerHTML = "PAPEL";
-    playerValue = "paper"
-    return checkWinner(playerValue,getRandomChoice())
+paperValue.addEventListener("click", function (event) {
+   return checkUserOption(event, "PAPEL", "paper")
 })
 
-sicsorsValue.addEventListener("click", function (e) {
-    e.preventDefault();
-    choiceBtn.innerHTML = "TIJERAS";
-    playerValue = "sicsors"
-    return checkWinner(playerValue,getRandomChoice())
+sicsorsValue.addEventListener("click", function (event) {
+    return checkUserOption(event, "TIJERAS", "sicsors")
 })
 
 
