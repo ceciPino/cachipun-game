@@ -31,7 +31,7 @@ function getRandomChoice() {
     }
 }
 
-
+// Refactorización función para asignar valor a player
 function checkWinner(player, computer) {
     if(player == computer){
         return gameResult.innerHTML = "ES UN EMPATE";
